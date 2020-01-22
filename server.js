@@ -10,7 +10,9 @@ const userRoutes = require('./src/routes/user');
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json());
+app.use(express.json({
+    type: ['application/json', 'text/plain']
+}));
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));

@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 function Index(props){
     return (
         <div>
-            <NavBar items={['Browse', 'SignUp', 'SignIn']} />
+            <NavBar items={['browse', 'signin']} />
             <h1>Home</h1>
         </div>
     )

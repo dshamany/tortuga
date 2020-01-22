@@ -1,8 +1,13 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
 
 function Profile(props){
+    
     return (
-        <h1>Profile</h1>
+        <div>
+            <NavBar items={['browse', 'signout']} />
+            <h1>Profile</h1>
+        </div>
     )
 }
 

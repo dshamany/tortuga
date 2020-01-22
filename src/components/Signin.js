@@ -27,18 +27,31 @@ function Signin(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function submitForm() {
+    async function submitForm() {
         const url = 'http://localhost:3000/users/sign';
-        let payload = {
+        const payload = {
             full_name: fullName,
             email,
             password,
         };
+        await fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: new Headers({
+                "Content-Type": "application/json",
+                "Accept":"application/json"
+        }),
+            body: JSON.stringify(payload)
+        })
+
+        fullName === '' 
+        ? props.history.push('/') 
+        : props.history.push('/profile')
     }
 
     return (
         <div>
-            <NavBar items={['SignUp', 'Browse']} />
+            <NavBar items={['browse']} />
             <h1>Sign In/Sign Up</h1>
             <div style={formStyle}>
                 <input

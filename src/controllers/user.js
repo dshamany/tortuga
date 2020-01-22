@@ -7,32 +7,33 @@ module.exports = {
     sign,
     signup,
     signin,
-    isAuthenticated
+    isAuthenticated,
 }
 
+
 function sign(req, res){
-    console.log(req);
     if (req.body.full_name === ''){
-        console.log('sign in');
         signin(req, res);
     } else {
-        console.log('sign up');
         signup(req, res);
     }
 }
 
 async function signup(req, res){
-    let user = User(req.body);
+    console.log('sign up');
+    let user = new User(req.body);
     try {
         await user.save();
         const token = createJWT(user);
-        res.json({token, user});
+        res.json({token});
+        // setToken(token);
     } catch (err){
         res.status(400).json(err);
     }
 }
 
 async function signin(req, res){
+    console.log('sign in');
     try {
         const user = await User.findOne({email: req.body.email});
         if (!user) return res.status(401).json({err: 'Bad Credentials'});
@@ -40,6 +41,7 @@ async function signin(req, res){
             if (err) return res.status(401).json({err});
             if (isMatch){
                 const token = createJWT(user);
+                // setToken(token);
                 res.json({token});
             }
         });

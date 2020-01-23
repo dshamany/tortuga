@@ -5,6 +5,7 @@ let postCtrl = require('../controllers/posts');
 router.get('/', postCtrl.getPosts);
 router.post('/', postCtrl.createPost);
 router.get('/:id', postCtrl.getOnePost);
+router.get('/user/:id', postCtrl.getUserPosts);
 router.put('/:id', postCtrl.updatePost);
 router.delete('/:id', postCtrl.deletePost);
 

@@ -1,11 +1,12 @@
-async function create(payload){
+async function create(payload, callback){
     await fetch('/posts', {
         method: 'POST',
         headers: new Headers({
             'Content-Type' : 'application/json'
         }),
         body: JSON.stringify(payload)
-    });
+    })
+    .then(() => callback());
 }
 
 
@@ -14,8 +15,9 @@ async function getAll(){
     .then(response => response.json());
 }
 
-async function getUserPosts(){
-
+async function getUserPosts(id){
+    return await fetch(`/posts/user/${id}`)
+    .then(response => response.json());
 }
 
 module.exports = {

@@ -43,16 +43,17 @@ let flexContainer = {
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignContent: 'center',
-    maxWidth: 650,
-    padding: 20,
+    maxWidth: '900px',
+    margin: '0px auto',
 }
 
 let postCardStyle = {
     border: '1px solid #000',
-    borderRadius: 5,
-    width: 300,
-    height: 200,
-    margin: 10,
+    borderRadius: '5px',
+    width: '200px',
+    height: '200px',
+    margin: '10px',
 } 
+
 
 export default Postlist;

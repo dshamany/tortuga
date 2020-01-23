@@ -58,7 +58,9 @@ function Post(props){
                                 content,
                                 user: user._id,
                             }
-                            PostUtil.create(body);
+                            PostUtil.create(body, () => {
+                                props.history.push('/profile');
+                            });
                         }}
                     />
                 </div>

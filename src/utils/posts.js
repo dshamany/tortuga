@@ -8,6 +8,18 @@ async function create(payload){
     });
 }
 
+
+async function getAll(){
+    return await fetch('/posts')
+    .then(response => response.json());
+}
+
+async function getUserPosts(){
+
+}
+
 module.exports = {
     create,
+    getAll,
+    getUserPosts,
 }

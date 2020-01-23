@@ -1,12 +1,16 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
-const Utils = require('../utils/auth');
-const USER_OBJ = Utils.getUserFromToken(Utils.getToken());
+const AuthUtil = require('../utils/auth');
+const PostUtil = require('../utils/posts');
+const USER_OBJ = AuthUtil.getUserFromToken(AuthUtil.getToken());
 
 
 function Profile(props){
     let user = USER_OBJ ? USER_OBJ.user : null;
+
+    
+
     if (user){
         return (
             <div>
@@ -20,7 +24,6 @@ function Profile(props){
                     </Link>
                     <h1>{user.full_name}</h1>
                     <p>{user.email}</p>
-                    <p>{user._id}</p>
                 </div>
                 <div>
                     <h2>Posts</h2>

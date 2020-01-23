@@ -19,7 +19,16 @@ let liStyle = {
 
 function NavBar(props) {
     let items = props.items;
+
+    if (localStorage.getItem('token')) {
+        items.push('profile');
+        items.push('signout');
+    } else {
+        items.push('signin');
+    }
+
     items = NavLinks.getItems(items);
+
     return (
         <div style={ulStyle}>
             {

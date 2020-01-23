@@ -3,27 +3,27 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 require('dotenv').config();
-require('./src/config/database');
+require('./config/database');
 
-const userRoutes = require('./src/routes/user');
+const userRoutes = require('./routes/users');
+const postRoutes = require('./routes/posts');
 
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json({
-    type: ['application/json', 'text/plain']
-}));
+app.use(express.json());
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/users', userRoutes);
+app.use('/posts', postRoutes);
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, function(){
     console.log(`Express app running on port ${port}`);
 });

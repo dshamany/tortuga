@@ -28,25 +28,29 @@ function Signin(props) {
     const [password, setPassword] = useState('');
 
     async function submitForm() {
-        const url = 'http://localhost:3000/users/sign';
         const payload = {
             full_name: fullName,
             email,
             password,
         };
+
+        let url = '/users/sign';        
+        
         await fetch(url, {
             method: 'POST',
-            mode: 'no-cors',
             headers: new Headers({
-                "Content-Type": "application/json",
-                "Accept":"application/json"
-        }),
+                'Content-Type':'application/json'
+            }),
             body: JSON.stringify(payload)
         })
-
-        fullName === '' 
-        ? props.history.push('/') 
-        : props.history.push('/profile')
+        .then(res => res.json())
+        .then(data => {
+            localStorage.setItem('token', data.token);
+            fullName === '' 
+            ? props.history.push('/') 
+            : props.history.push('/profile')
+        });
+        
     }
 
     return (

@@ -7,7 +7,6 @@ module.exports = {
     sign,
     signup,
     signin,
-    isAuthenticated,
 }
 
 
@@ -26,7 +25,6 @@ async function signup(req, res){
         await user.save();
         const token = createJWT(user);
         res.json({token});
-        // setToken(token);
     } catch (err){
         res.status(400).json(err);
     }
@@ -36,25 +34,19 @@ async function signin(req, res){
     console.log('sign in');
     try {
         const user = await User.findOne({email: req.body.email});
-        if (!user) return res.status(401).json({err: 'Bad Credentials'});
+        if (!user) res.status(401).json({err: 'Bad Credentials'});
         user.comparePassword(req.body.password, (err, isMatch) => {
-            if (err) return res.status(401).json({err});
+            if (err) res.status(401).json({err});
             if (isMatch){
                 const token = createJWT(user);
-                // setToken(token);
                 res.json({token});
             }
         });
     } catch (err) {
-        return res.status(500).json(err);
+        res.status(500).json(err);
     }
 }
 
 function createJWT(user){
     return jwt.sign({user}, SECRET, {expiresIn: '24h'});
-}
-
-function isAuthenticated(req, res, next){
-    if (req.user) return next();
-    return res.status(401).json({msg: 'Not Authorized, Please sign in.'});
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import { Link } from 'react-router-dom';
 let PostUtil = require('../utils/posts');
 
 function Postlist(props){
@@ -26,9 +27,11 @@ function Postlist(props){
                 posts
                 ? posts.map((post) => {
                     return (
-                        <div style={{...postCardStyle}} key={post.title}>
-                            <h3>{post.title}</h3>
-                        </div>
+                        <Link to={`/posts/${post._id}`} key={post._id}>
+                            <div style={{...postCardStyle}}>
+                                <h3>{post.title}</h3>
+                            </div>
+                        </Link>
                     );
                 })
                 : <p>Data unavailable</p>
@@ -43,6 +46,8 @@ let flexContainer = {
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     maxWidth: '900px',
     margin: '0px auto',
 }

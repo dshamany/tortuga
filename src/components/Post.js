@@ -10,8 +10,6 @@ function Post(props){
     const [content, setContent] = useState('');
 
     let action = props.location.pathname.split('/')[2];
-
-    if (isNaN(action)){
         
         let user = AuthUtil.getUserFromToken(AuthUtil.getToken()).user;
         let firstUpper = action[0].toUpperCase();
@@ -66,14 +64,6 @@ function Post(props){
                 </div>
             </div>
         );
-    } else {
-        return (
-            <div>
-                <NavBar items={['browse']} />
-                <h1>Post </h1>
-            </div>
-        );
-    }
 }
 
 let createDiv = {

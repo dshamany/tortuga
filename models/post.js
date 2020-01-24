@@ -9,10 +9,6 @@ const PostSchema = new Schema({
     content: String,
     imgUrl: String,
     location: String,
-    crew: {
-        type: Map,
-        of: String,
-    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

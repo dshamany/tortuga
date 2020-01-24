@@ -15,6 +15,11 @@ async function getAll(){
     .then(response => response.json());
 }
 
+async function getOne(id){
+    return await fetch(`/posts/${id}`)
+    .then(response => response.json());
+}
+
 async function getUserPosts(id){
     return await fetch(`/posts/user/${id}`)
     .then(response => response.json());
@@ -24,4 +29,5 @@ module.exports = {
     create,
     getAll,
     getUserPosts,
+    getOne,
 }

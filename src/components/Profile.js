@@ -43,9 +43,11 @@ function Profile(props){
                              posts
                              ? posts.map((post) => {
                                  return (
-                                     <div style={{...postCardStyle}} key={post.title}>
-                                         <h3>{post.title}</h3>
-                                     </div>
+                                     <Link to={`/posts/${post._id}`}>
+                                        <div style={{...postCardStyle}} key={post.title}>
+                                            <h3>{post.title}</h3>
+                                        </div>
+                                     </Link>
                                  );
                              })
                              : <p>Data unavailable</p>

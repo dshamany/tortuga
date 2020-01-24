@@ -6,6 +6,7 @@ import Profile from './components/Profile';
 import Signin from './components/Signin';
 import Postlist from './components/Postlist';
 import Post from './components/Post';
+import PostDetail from './components/PostDetail';
 import SignOut from './components/Signout';
 
 
@@ -19,7 +20,8 @@ function App() {
         <Route exact path='/signout' component={SignOut}/>
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/posts' component={Postlist}/>
-        <Route exact path='/posts/:id' component={Post}/>
+        <Route exact path='/posts/create' component={Post}/>
+        <Route exact path='/posts/:id' component={PostDetail}/>
       </Switch>
     </div>
   );

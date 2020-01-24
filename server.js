@@ -7,6 +7,7 @@ require('./config/database');
 
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
+const crewRoutes = require('./routes/crew');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
+app.use('/crew', crewRoutes);
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

@@ -12,7 +12,6 @@ import SignOut from './components/Signout';
 
 
 function App() {
-  const [global, setGlobal] = useState({});
 
   return (
     <div className='App'>

@@ -1,4 +1,4 @@
-async function addCrew(body, callback){
+export async function addCrew(body, callback){
     return await fetch(`/crew`, {
         method: 'POST',
         headers: new Headers({
@@ -12,7 +12,7 @@ async function addCrew(body, callback){
     });
 }
 
-async function getCrew(id){
+export async function getCrew(id){
     return await fetch(`/crew/post/${id}`, {
         method: 'POST',
         headers: new Headers({
@@ -21,10 +21,4 @@ async function getCrew(id){
         body: null
     })
     .then(response => response.json());
-}
-
-
-module.exports = {
-    addCrew,
-    getCrew,
 }

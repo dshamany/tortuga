@@ -1,4 +1,4 @@
-function getToken(){
+export function getToken(){
     let token = localStorage.getItem('token');
     
     if (token){
@@ -12,13 +12,8 @@ function getToken(){
     return token;
 }
 
-function getUserFromToken(token){
+export function getUserFromToken(token){
     if (!token) return null;
     let userInfo = token.split('.')[1];
     return JSON.parse(atob(userInfo));
-}
-
-module.exports = {
-    getToken,
-    getUserFromToken,
 }

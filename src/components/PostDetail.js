@@ -191,7 +191,7 @@ let signedUp = {
     backgroundColor: '#555',
     color: 'white',
     padding: '10px',
-    textAlign: 'left',
+    margin: '0 auto',
 }
 
 let inputStyle = {

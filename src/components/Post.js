@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import { getUserFromToken, getToken } from '../utils/auth';
-import { createPost, getOne, updatePost } from '../utils/posts';
+import * as PostUtil from '../utils/posts.js';
 
 function Post(props){
     
@@ -21,7 +21,7 @@ function Post(props){
         
     useEffect(() => {
         if (action !== 'Create' && isLoading){
-            getOne(action)
+            PostUtil.getOne(action)
             .then((data) => {
                 setTitle(data.post.title);
                 setImgUrl(data.post.imgUrl);
@@ -74,7 +74,7 @@ function Post(props){
                                 content,
                                 user: user._id,
                             }
-                            createPost(body, () => {
+                            PostUtil.createPost(body, () => {
                                 props.history.push('/profile');
                             })
                         }}
@@ -90,7 +90,7 @@ function Post(props){
                                 content,
                                 user: user._id,
                             }
-                            updatePost(action, body, () => {
+                            PostUtil.updatePost(action, body, () => {
                                 props.history.push('/profile');
                             })
                         }}

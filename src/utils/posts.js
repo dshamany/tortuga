@@ -1,4 +1,4 @@
-async function createPost(payload, callback){
+export async function createPost(payload, callback){
     await fetch('/posts', {
         method: 'POST',
         headers: new Headers({
@@ -10,22 +10,22 @@ async function createPost(payload, callback){
 }
 
 
-async function getAll(){
+export async function getAll(){
     return await fetch('/posts')
     .then(response => response.json());
 }
 
-async function getOne(id){
+export async function getOne(id){
     return await fetch(`/posts/${id}`)
     .then(response => response.json());
 }
 
-async function getUserPosts(id){
+export async function getUserPosts(id){
     return await fetch(`/posts/user/${id}`)
     .then(response => response.json());
 }
 
-async function updatePost(id, payload, callback){
+export async function updatePost(id, payload, callback){
     await fetch(`/posts/${id}`, {
         method: 'PUT',
         headers: new Headers({
@@ -39,7 +39,7 @@ async function updatePost(id, payload, callback){
     });
 }
 
-async function removePost(id, callback){
+export async function removePost(id, callback){
     return await fetch(`/posts/${id}`, {
         method: 'DELETE',
         headers: new Headers({
@@ -49,11 +49,11 @@ async function removePost(id, callback){
     .then(() => callback());
 }
 
-module.exports = {
-    createPost,
-    getAll,
-    getUserPosts,
-    getOne,
-    updatePost,
-    removePost,
-}
+// export default {
+//     createPost,
+//     getAll,
+//     getUserPosts,
+//     getOne,
+//     updatePost,
+//     removePost,
+// }

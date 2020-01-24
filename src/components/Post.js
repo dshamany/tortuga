@@ -44,9 +44,9 @@ function Post(props){
                         value={title}
                     />
                     <input
-                        style={{...inputStyle, ...borderStyle}}
+                        style={{...inputStyle}}
                         placeholder='Image Url'
-                        type='url'
+                        type='file'
                         name='ImgUrl'
                         onChange={(e) => setImgUrl(e.target.value)}
                         value={imgUrl}

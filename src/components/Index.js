@@ -29,7 +29,7 @@ function Index(props){
             <br></br>
             <br></br>
             <br></br>
-            <h2>Find a crew for your next journey.</h2>
+            <h1>Find a crew for your next journey.</h1>
         </div>
     )
 }

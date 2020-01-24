@@ -9,7 +9,27 @@ function Index(props){
                 <NavBar items={['browse']} /> :
                 <NavBar items={['browse']} />
             }
-            <h1>Home</h1>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <h2>Find a crew for your next journey.</h2>
         </div>
     )
 }

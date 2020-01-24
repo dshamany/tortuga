@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
-import PostUtil from '../utils/posts';
-import CrewUtil from '../utils/crew';
-import AuthUtil from '../utils/auth';
+const PostUtil = require('../utils/posts');
+const CrewUtil = require('../utils/crew');
+const AuthUtil = require('../utils/auth');
 
 
 function PostDetail(props){

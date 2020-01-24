@@ -1,4 +1,4 @@
-async function create(payload, callback){
+async function createPost(payload, callback){
     await fetch('/posts', {
         method: 'POST',
         headers: new Headers({
@@ -50,7 +50,7 @@ async function removePost(id, callback){
 }
 
 module.exports = {
-    create,
+    createPost,
     getAll,
     getUserPosts,
     getOne,

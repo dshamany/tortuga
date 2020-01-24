@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import { getUserFromToken, getToken } from '../utils/auth';
-import { getOne, create, updatePost } from '../utils/posts';
+import { createPost, getOne, updatePost } from '../utils/posts';
 
 function Post(props){
     
@@ -74,7 +74,7 @@ function Post(props){
                                 content,
                                 user: user._id,
                             }
-                            create(body, () => {
+                            createPost(body, () => {
                                 props.history.push('/profile');
                             })
                         }}

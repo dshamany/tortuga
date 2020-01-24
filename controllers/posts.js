@@ -43,9 +43,9 @@ function getUserPosts(req, res){
 }
 
 function updatePost(req, res){
-    Post.findByIdAndUpdate({
+    Post.findOneAndUpdate({
         _id: req.params.id}, 
-        req.params.body, 
+        req.body, 
         (err, updated)=> {
             if (err) res.status(400).json(err);
             res.json(updated);

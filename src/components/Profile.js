@@ -43,7 +43,7 @@ function Profile(props){
                              posts
                              ? posts.map((post) => {
                                  return (
-                                     <Link to={`/posts/${post._id}`}>
+                                     <Link to={`/posts/${post._id}`} key={post._id}>
                                         <div style={{...postCardStyle}} key={post.title}>
                                             <h3>{post.title}</h3>
                                         </div>

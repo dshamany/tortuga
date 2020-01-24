@@ -4,21 +4,22 @@ import PostUtil from '../utils/posts';
 import CrewUtil from '../utils/crew';
 import AuthUtil from '../utils/auth';
 
-function PostDetail(props){
 
+function PostDetail(props){
+    
     let USER_OBJ = AuthUtil.getUserFromToken(AuthUtil.getToken());
     let user = USER_OBJ && USER_OBJ.user;
-
+    
     const [isLoading, setIsLoading] = useState(true);
     const [post, setPost] = useState(null);
     const [crew, setCrew] = useState(null);
-
+    
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-
+    
     const [isPostUser, setIsPostUser] = useState(false)
-
+    
     let id = props.location.pathname.split('/')[2];
 
     if (isLoading){
@@ -38,15 +39,29 @@ function PostDetail(props){
             <div>
                 <NavBar items={['browse']} />
                 <div style={{...postStyle}}>
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
                     {
                         (user && user._id === post.user) &&
-                        <div>
-                            <input type="button" value="Edit"/>
-                            <input type="button" value="Delete"/>
+                        <div style={{...userControls}}>
+                            <input 
+                                style={{...userControlBtn, ...blueBtn}}
+                                type="submit" 
+                                value="Edit"
+                                onClick={() => {
+                                    props.history.push(`/posts/${post._id}/edit`);
+                                }}                               
+                                />
+                            <input 
+                                style={{...userControlBtn, ...redBtn}}
+                                type="button" 
+                                value="Delete"
+                                onClick={() => PostUtil.removePost(post._id, () => {
+                                    props.history.push('/posts');
+                                })}
+                                />
                         </div>
                     }
+                    <h1>{post.title}</h1>
+                    <p>{post.content}</p>
                 </div>
                 <div style={{...interestForm}}>
                     <h2>Join</h2>
@@ -127,9 +142,39 @@ function PostDetail(props){
 
 }
 
+let userControls = {
+    position: 'absolute',
+    right: '10px',
+    bottom: '10px',
+    display: 'flex',
+    alignItems: 'space-between',
+    padding: '10px',
+    zIndex: '10',
+}
+
+let userControlBtn = {
+    margin: '5px',
+    border: '1px solid black',
+    borderRadius: '5px',
+    padding: '10px 20px',
+    width: '100px',
+}
+
+let blueBtn = {
+    color: 'black',
+    backgroundColor: '#66ccff',
+}
+
+let redBtn = {
+    color: 'black',
+    backgroundColor: 'red',
+}
+
 let postStyle = {
-    width: '100vw',
+    width: '80vw',
     height: '100vh',
+    margin: '0 auto',
+    textAlign: 'justify',
 }
 
 let interestForm = {
@@ -163,10 +208,6 @@ let submitBtn = {
     padding: 10,
     border: '1px solid #000',
     borderRadius: 5,
-}
-
-let listStyle = {
-    listStyle: 'none',
 }
 
 export default PostDetail;

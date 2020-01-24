@@ -1,50 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 let AuthUtil = require('../utils/auth');
 let PostUtil = require('../utils/posts');
 
 function Post(props){
-
+    
+    let action = props.location.pathname.split('/')[2];
+    
+    
+    let user = AuthUtil.getUserFromToken(AuthUtil.getToken()).user;
+    let firstUpper = action[0].toUpperCase();
+    action = action.split('');
+    action.splice(0, 1, firstUpper);
+    action = action.join('')
+    
+    const [isLoading, setIsLoading] = useState(true);
     const [title, setTitle] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [content, setContent] = useState('');
-
-    let action = props.location.pathname.split('/')[2];
         
-        let user = AuthUtil.getUserFromToken(AuthUtil.getToken()).user;
-        let firstUpper = action[0].toUpperCase();
-        action = action.split('');
-        action.splice(0, 1, firstUpper);
-        action = action.join('')
-
-        return (
+    useEffect(() => {
+        if (action !== 'Create' && isLoading){
+            PostUtil.getOne(action)
+            .then((data) => {
+                setTitle(data.post.title);
+                setImgUrl(data.post.imgUrl);
+                setContent(data.post.content);
+                setIsLoading(false);
+            });
+        }
+    })
+    return (
+        <div>
+            <NavBar items={['browse']} />
+            {action === 'Create' && <h1>Create Post</h1>}
             <div>
-                <NavBar items={['browse']} />
-                <h1>Post {action}</h1>
-                <div>
-                    <div style={createDiv}>
-                        <input 
-                            style={{...inputStyle, ...borderStyle}}
-                            placeholder='Title'
-                            name='title'
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                        <input
-                            style={{...inputStyle, ...borderStyle}}
-                            placeholder='Image Url'
-                            type='url'
-                            name='ImgUrl'
-                            onChange={(e) => setImgUrl(e.target.value)}
-                        />
-                    </div>
-                        <div style={{...createDiv}}>
-                    <textarea 
-                        style={{...contentStyle, ...borderStyle}}
-                        placeholder='Content'
-                        name='content'
-                        onChange={(e) => setContent(e.target.value)}
+                <div style={createDiv}>
+                    <input 
+                        style={{...inputStyle, ...borderStyle}}
+                        placeholder='Title'
+                        name='title'
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}
                     />
-                    </div>
+                    <input
+                        style={{...inputStyle, ...borderStyle}}
+                        placeholder='Image Url'
+                        type='url'
+                        name='ImgUrl'
+                        onChange={(e) => setImgUrl(e.target.value)}
+                        value={imgUrl}
+                    />
+                </div>
+                    <div style={{...createDiv}}>
+                <textarea 
+                    style={{...contentStyle, ...borderStyle}}
+                    placeholder='Content'
+                    name='content'
+                    onChange={(e) => setContent(e.target.value)}
+                    value={content}
+                />
+                </div>
+                {
+                    action === 'Create' ?
                     <input 
                         style={submitBtn}
                         type='submit'
@@ -58,12 +76,30 @@ function Post(props){
                             }
                             PostUtil.create(body, () => {
                                 props.history.push('/profile');
-                            });
+                            })
+                        }}
+                    /> :
+                    <input 
+                        style={submitBtn}
+                        type='submit'
+                        value='Update Post'
+                        onClick={() => {
+                            let body = {
+                                title,
+                                imgUrl,
+                                content,
+                                user: user._id,
+                            }
+                            PostUtil.updatePost(action, body, () => {
+                                props.history.push('/profile');
+                            })
                         }}
                     />
-                </div>
+
+                }
             </div>
-        );
+        </div>
+    );
 }
 
 let createDiv = {

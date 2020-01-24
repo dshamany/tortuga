@@ -182,7 +182,6 @@ let interestForm = {
     bottom: 0,
     backgroundColor: 'black',
     color: 'white',
-    width: '100%',
     padding: 30,
 }
 
@@ -191,10 +190,8 @@ let signedUp = {
     bottom: 0,
     backgroundColor: '#555',
     color: 'white',
-    padding: '10px 50px',
+    padding: '10px',
     textAlign: 'left',
-    margin: '0 auto',
-    width: '100%',
 }
 
 let inputStyle = {

@@ -10,3 +10,7 @@ This app is for sailors to find a crew to join them on their journeys.
 
 ## Technologies Used 
 MongoDB | ExpressJS | ReactJS | NodeJS | HTML | CSS | JavaScript
+
+
+## Future Additions
+Payment System | Styling | Logo | AWS S3

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
-let AuthUtil = require('../utils/auth');
-let PostUtil = require('../utils/posts');
+import { getUserFromToken, getToken } from '../utils/auth';
+import { getOne, create, updatePost } from '../utils/posts';
 
 function Post(props){
     
     let action = props.location.pathname.split('/')[2];
     
     
-    let user = AuthUtil.getUserFromToken(AuthUtil.getToken()).user;
+    let user = getUserFromToken(getToken()).user;
     let firstUpper = action[0].toUpperCase();
     action = action.split('');
     action.splice(0, 1, firstUpper);
@@ -21,7 +21,7 @@ function Post(props){
         
     useEffect(() => {
         if (action !== 'Create' && isLoading){
-            PostUtil.getOne(action)
+            getOne(action)
             .then((data) => {
                 setTitle(data.post.title);
                 setImgUrl(data.post.imgUrl);
@@ -74,7 +74,7 @@ function Post(props){
                                 content,
                                 user: user._id,
                             }
-                            PostUtil.create(body, () => {
+                            create(body, () => {
                                 props.history.push('/profile');
                             })
                         }}
@@ -90,7 +90,7 @@ function Post(props){
                                 content,
                                 user: user._id,
                             }
-                            PostUtil.updatePost(action, body, () => {
+                            updatePost(action, body, () => {
                                 props.history.push('/profile');
                             })
                         }}

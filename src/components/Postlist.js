@@ -47,7 +47,7 @@ let flexContainer = {
     flexDirection: 'row',
     alignContent: 'center',
     alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     maxWidth: '900px',
     margin: '0px auto',
 }

@@ -1,6 +1,6 @@
 # Tortuga
 ---------
-[Open App on Heroku](https://dshamany.github.io)
+[Open App on Heroku](https://ds-tor.herokuapp.com)
 
 ## Description
 This app is for sailors to find a crew to join them on their journeys.

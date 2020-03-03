@@ -2,18 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import NavLinks from '../constants/NavLinks';
 
+const logo = "../../tortuga-full-logo.png";
+
 let ulStyle = {
     margin: 0,
     listStyle: 'none',
     display: 'flex',
-    color: 'white',
-    backgroundColor: 'black',
+    color: 'black',
+    backgroundColor: 'tansparent',
     justifyContent: 'flex-end',
 };
 
 let liStyle = {
     margin: 10,
-    color: 'white',
+    color: 'black',
     textDecoration: 'none',
 }
 
@@ -31,6 +33,21 @@ function NavBar(props) {
 
     return (
         <div style={ulStyle}>
+            <Link
+                to="/"
+                key="00"
+            >
+                <img 
+                    src={logo}
+                    style={{
+                        width: 50,
+                        height: 50,
+                        position: "fixed",
+                        left: 20,
+                        top: 6,
+                    }}
+                />
+            </Link>
             {
                 items.map(item => {
                     return(

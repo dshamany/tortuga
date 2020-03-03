@@ -1,4 +1,7 @@
 # Tortuga
+
+<img src="src/logo.svg" width="300px" height="300px">
+
 ---------
 [Open App on Heroku](https://ds-tor.herokuapp.com)
 

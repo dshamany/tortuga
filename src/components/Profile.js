@@ -72,7 +72,7 @@ let createBtn = {
 
 let divStyleTop = {
     textAlign: 'left',
-    backgroundColor: '#555',
+    backgroundColor: '#333',
     color: 'white',
     padding: '20px',
 }
